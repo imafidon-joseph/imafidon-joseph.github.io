@@ -13,9 +13,15 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            --neon-green: #00ff88;
-            --dark-bg: #0a0f1c;
-            --card-bg: #111827;
+            --accent-primary: #a78bfa;
+            --accent-secondary: #f472b6;
+            --accent-green: #5eead4;
+            --dark-bg: #0a0a12;
+            --card-bg: #16161f;
+            --card-border: rgba(255, 255, 255, 0.06);
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
         }
         
         * {
@@ -27,7 +33,7 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--dark-bg);
-            color: white;
+            color: var(--text-primary);
             overflow-x: hidden;
             line-height: 1.6;
         }
@@ -37,43 +43,43 @@
         }
         
         .neon-text {
-            color: var(--neon-green);
-            text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+            color: var(--accent-green);
+            text-shadow: 0 0 20px rgba(94, 234, 212, 0.25);
         }
         
         .glass-card {
-            background: rgba(17, 24, 39, 0.8);
+            background: var(--card-bg);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
             transition: all 0.3s ease;
         }
         
         .glass-card:hover {
-            border-color: rgba(0, 255, 136, 0.3);
+            border-color: rgba(167, 139, 250, 0.25);
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.1);
+            box-shadow: 0 20px 40px rgba(167, 139, 250, 0.08);
         }
         
         .skill-bar {
-            background: rgba(0, 255, 136, 0.1);
+            background: rgba(167, 139, 250, 0.1);
             border-radius: 4px;
             overflow: hidden;
             height: 8px;
         }
         
         .skill-fill {
-            background: var(--neon-green);
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
             height: 100%;
             border-radius: 4px;
-            box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+            box-shadow: 0 0 10px rgba(167, 139, 250, 0.4);
             width: 0;
             transition: width 1.5s ease;
         }
         
         .tag {
-            background: rgba(0, 255, 136, 0.1);
-            color: var(--neon-green);
-            border: 1px solid rgba(0, 255, 136, 0.3);
+            background: rgba(167, 139, 250, 0.08);
+            color: var(--accent-primary);
+            border: 1px solid rgba(167, 139, 250, 0.25);
             transition: all 0.3s ease;
             padding: 0.25rem 0.75rem;
             border-radius: 9999px;
@@ -82,19 +88,19 @@
         }
         
         .tag:hover {
-            background: rgba(0, 255, 136, 0.2);
+            background: rgba(167, 139, 250, 0.15);
             transform: scale(1.05);
         }
         
         .grid-bg {
             background-image: 
-                linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(167, 139, 250, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(167, 139, 250, 0.02) 1px, transparent 1px);
             background-size: 50px 50px;
         }
         
         .gradient-text {
-            background: linear-gradient(135deg, #fff 0%, var(--neon-green) 100%);
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -102,7 +108,7 @@
         
         .nav-link {
             position: relative;
-            color: #d1d5db;
+            color: var(--text-secondary);
             transition: color 0.3s ease;
         }
         
@@ -113,12 +119,12 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--neon-green);
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
             transition: width 0.3s ease;
         }
         
         .nav-link:hover {
-            color: white;
+            color: var(--text-primary);
         }
         
         .nav-link:hover::after {
@@ -126,13 +132,13 @@
         }
         
         .btn-primary {
-            background: var(--neon-green);
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
             color: var(--dark-bg);
             font-weight: 700;
             padding: 1rem 2rem;
             border-radius: 0.5rem;
             transition: all 0.3s ease;
-            box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+            box-shadow: 0 0 30px rgba(167, 139, 250, 0.25);
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
@@ -140,12 +146,12 @@
         
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 40px rgba(0, 255, 136, 0.5);
+            box-shadow: 0 10px 40px rgba(167, 139, 250, 0.4);
         }
         
         .btn-secondary {
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
             padding: 1rem 2rem;
             border-radius: 0.5rem;
             transition: all 0.3s ease;
@@ -155,14 +161,14 @@
         }
         
         .btn-secondary:hover {
-            border-color: var(--neon-green);
-            color: var(--neon-green);
-            background: rgba(0, 255, 136, 0.05);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            background: rgba(167, 139, 250, 0.05);
         }
         
         .icon-box {
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 255, 136, 0.05));
-            border: 1px solid rgba(0, 255, 136, 0.2);
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.1), rgba(244, 114, 182, 0.05));
+            border: 1px solid rgba(167, 139, 250, 0.15);
             width: 4rem;
             height: 4rem;
             border-radius: 0.75rem;
@@ -177,10 +183,10 @@
         }
         
         .github-link {
-            color: var(--neon-green);
+            color: var(--accent-primary);
             text-decoration: underline;
             text-underline-offset: 4px;
-            text-decoration-color: rgba(0, 255, 136, 0.3);
+            text-decoration-color: rgba(167, 139, 250, 0.3);
             transition: all 0.3s ease;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.875rem;
@@ -190,8 +196,8 @@
         }
         
         .github-link:hover {
-            text-decoration-color: var(--neon-green);
-            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+            text-decoration-color: var(--accent-primary);
+            text-shadow: 0 0 10px rgba(167, 139, 250, 0.4);
         }
         
         .contact-reveal {
@@ -208,24 +214,24 @@
         }
         
         .contact-highlight {
-            background: rgba(0, 255, 136, 0.1);
-            border: 1px solid var(--neon-green);
+            background: rgba(167, 139, 250, 0.08);
+            border: 1px solid var(--accent-primary);
             padding: 0.75rem 1.5rem;
             border-radius: 0.5rem;
             font-family: 'JetBrains Mono', monospace;
-            color: var(--neon-green);
+            color: var(--accent-primary);
             font-size: 1.1rem;
             display: inline-block;
             cursor: pointer;
             position: relative;
             animation: highlightPulse 0.5s ease;
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+            box-shadow: 0 0 20px rgba(167, 139, 250, 0.15);
         }
         
         @keyframes highlightPulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 rgba(0, 255, 136, 0); }
-            50% { transform: scale(1.02); box-shadow: 0 0 30px rgba(0, 255, 136, 0.6); }
-            100% { transform: scale(1); box-shadow: 0 0 20px rgba(0, 255, 136, 0.2); }
+            0% { transform: scale(0.95); box-shadow: 0 0 0 rgba(167, 139, 250, 0); }
+            50% { transform: scale(1.02); box-shadow: 0 0 30px rgba(167, 139, 250, 0.4); }
+            100% { transform: scale(1); box-shadow: 0 0 20px rgba(167, 139, 250, 0.15); }
         }
         
         .copy-hint {
@@ -240,7 +246,7 @@
             bottom: 2rem;
             left: 50%;
             transform: translateX(-50%) translateY(100px);
-            background: var(--neon-green);
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
             color: var(--dark-bg);
             padding: 0.75rem 1.5rem;
             border-radius: 0.5rem;
@@ -249,7 +255,7 @@
             opacity: 0;
             transition: all 0.3s ease;
             z-index: 100;
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+            box-shadow: 0 10px 30px rgba(167, 139, 250, 0.3);
         }
         
         .notification.show {
@@ -271,12 +277,12 @@
         }
         
         ::-webkit-scrollbar-thumb {
-            background: rgba(0, 255, 136, 0.3);
+            background: rgba(167, 139, 250, 0.3);
             border-radius: 4px;
         }
         
         ::-webkit-scrollbar-thumb:hover {
-            background: var(--neon-green);
+            background: var(--accent-primary);
         }
         
         @media (max-width: 768px) {
@@ -288,10 +294,10 @@
 </head>
 <body class="grid-bg">
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 bg-[#0a0f1c]/90 backdrop-blur-md border-b border-white/5">
+    <nav class="fixed top-0 w-full z-50 bg-[#0a0a12]/90 backdrop-blur-md border-b border-white/5">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="font-mono text-2xl font-bold">
-                <span class="neon-text">joseph</span><span class="text-gray-400">.sec</span>
+                <span class="neon-text">joseph</span><span class="text-gray-500">.sec</span>
             </a>
             <button id="menuBtn" class="md:hidden text-white p-2" aria-label="Toggle menu">
                 <i data-lucide="menu" class="w-6 h-6"></i>
@@ -304,13 +310,13 @@
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
         </div>
-        <div id="mobileMenu" class="hidden md:hidden bg-[#111827] border-t border-white/5">
+        <div id="mobileMenu" class="hidden md:hidden bg-[#16161f] border-t border-white/5">
             <div class="flex flex-col p-6 gap-4 font-mono">
-                <a href="#about" class="text-gray-300 hover:text-[#00ff88] transition-colors">About</a>
-                <a href="#projects" class="text-gray-300 hover:text-[#00ff88] transition-colors">Projects</a>
-                <a href="#skills" class="text-gray-300 hover:text-[#00ff88] transition-colors">Skills</a>
-                <a href="#certs" class="text-gray-300 hover:text-[#00ff88] transition-colors">Credentials</a>
-                <a href="#contact" class="text-gray-300 hover:text-[#00ff88] transition-colors">Contact</a>
+                <a href="#about" class="text-gray-400 hover:text-[#a78bfa] transition-colors">About</a>
+                <a href="#projects" class="text-gray-400 hover:text-[#a78bfa] transition-colors">Projects</a>
+                <a href="#skills" class="text-gray-400 hover:text-[#a78bfa] transition-colors">Skills</a>
+                <a href="#certs" class="text-gray-400 hover:text-[#a78bfa] transition-colors">Credentials</a>
+                <a href="#contact" class="text-gray-400 hover:text-[#a78bfa] transition-colors">Contact</a>
             </div>
         </div>
     </nav>
@@ -319,7 +325,7 @@
     <section id="about" class="min-h-screen flex items-center justify-center pt-20 px-6">
         <div class="max-w-4xl mx-auto text-center">
             <div class="reveal">
-                <p class="font-mono text-[#00ff88] mb-4 tracking-widest text-sm">// CYBERSECURITY ANALYST | PENETRATION TESTER</p>
+                <p class="font-mono text-[#5eead4] mb-4 tracking-widest text-sm">// CYBERSECURITY ANALYST | PENETRATION TESTER</p>
                 <h1 class="hero-title text-5xl md:text-7xl font-bold mb-6 leading-tight">
                     About <span class="gradient-text">Imafidon Joseph</span>
                 </h1>
@@ -331,8 +337,8 @@
                     security threats effectively.
                 </p>
                 <p class="text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
-                    I have hands-on experience in both <span class="text-[#00ff88]">defensive</span> and 
-                    <span class="text-[#00ff88]">offensive</span> security, with a focus on threat detection and monitoring using 
+                    I have hands-on experience in both <span class="text-[#5eead4]">defensive</span> and 
+                    <span class="text-[#5eead4]">offensive</span> security, with a focus on threat detection and monitoring using 
                     <span class="text-white font-semibold">Splunk</span> and <span class="text-white font-semibold">Wazuh SIEM</span>. 
                     My work includes developing detection queries, building real-time alerts and dashboards, and analyzing attacks such as 
                     SQL injection and phishing. I am particularly interested in threat detection, incident response, and improving 
@@ -351,19 +357,19 @@
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
                     <div class="glass-card rounded-xl p-6 text-center">
                         <div class="text-4xl font-bold neon-text mb-2">7+</div>
-                        <div class="text-gray-400 text-sm font-mono">Security Projects</div>
+                        <div class="text-gray-500 text-sm font-mono">Security Projects</div>
                     </div>
                     <div class="glass-card rounded-xl p-6 text-center">
                         <div class="text-4xl font-bold neon-text mb-2">2</div>
-                        <div class="text-gray-400 text-sm font-mono">Certifications</div>
+                        <div class="text-gray-500 text-sm font-mono">Certifications</div>
                     </div>
                     <div class="glass-card rounded-xl p-6 text-center">
                         <div class="text-4xl font-bold neon-text mb-2">SOC</div>
-                        <div class="text-gray-400 text-sm font-mono">Focus Area</div>
+                        <div class="text-gray-500 text-sm font-mono">Focus Area</div>
                     </div>
                     <div class="glass-card rounded-xl p-6 text-center">
                         <div class="text-4xl font-bold neon-text mb-2">∞</div>
-                        <div class="text-gray-400 text-sm font-mono">Curiosity</div>
+                        <div class="text-gray-500 text-sm font-mono">Curiosity</div>
                     </div>
                 </div>
             </div>
@@ -375,8 +381,8 @@
         <div class="max-w-6xl mx-auto">
             <div class="reveal mb-16">
                 <div class="flex items-center gap-4 mb-4">
-                    <div class="h-px bg-[#00ff88] w-12"></div>
-                    <span class="font-mono text-[#00ff88] tracking-widest text-sm">PROJECTS</span>
+                    <div class="h-px bg-[#a78bfa] w-12"></div>
+                    <span class="font-mono text-[#a78bfa] tracking-widest text-sm">PROJECTS</span>
                 </div>
                 <h2 class="text-4xl md:text-5xl font-bold mb-4">Hands-On Security Work</h2>
                 <p class="text-gray-400 max-w-2xl text-lg">
@@ -389,7 +395,7 @@
                 <!-- Project 1: Phishing Simulation & Detection with Splunk -->
                 <div class="glass-card rounded-2xl p-8 reveal project-card">
                     <div class="icon-box mb-6">
-                        <i data-lucide="mail-warning" class="w-8 h-8 text-[#00ff88]"></i>
+                        <i data-lucide="mail-warning" class="w-8 h-8 text-[#a78bfa]"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">Phishing Simulation & Detection with Splunk</h3>
                     <p class="text-gray-400 mb-6 leading-relaxed">
@@ -415,7 +421,7 @@
                 <!-- Project 2: SQL Injection Detection & Analysis -->
                 <div class="glass-card rounded-2xl p-8 reveal project-card">
                     <div class="icon-box mb-6">
-                        <i data-lucide="database" class="w-8 h-8 text-[#00ff88]"></i>
+                        <i data-lucide="database" class="w-8 h-8 text-[#a78bfa]"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">SQL Injection Detection & Analysis</h3>
                     <p class="text-gray-400 mb-6 leading-relaxed">
@@ -439,7 +445,7 @@
                 <!-- Project 3: Union-Based SQL Injection -->
                 <div class="glass-card rounded-2xl p-8 reveal project-card">
                     <div class="icon-box mb-6">
-                        <i data-lucide="table-2" class="w-8 h-8 text-[#00ff88]"></i>
+                        <i data-lucide="table-2" class="w-8 h-8 text-[#a78bfa]"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">Union-Based SQL Injection & Data Extraction</h3>
                     <p class="text-gray-400 mb-6 leading-relaxed">
@@ -463,7 +469,7 @@
                 <!-- Project 4: T-Pot Honeypot -->
                 <div class="glass-card rounded-2xl p-8 reveal project-card">
                     <div class="icon-box mb-6">
-                        <i data-lucide="shield" class="w-8 h-8 text-[#00ff88]"></i>
+                        <i data-lucide="shield" class="w-8 h-8 text-[#a78bfa]"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">T-Pot Honeypot Deployment</h3>
                     <p class="text-gray-400 mb-6 leading-relaxed">
@@ -487,7 +493,7 @@
                 <!-- Project 5: AI Phishing Email Detector -->
                 <div class="glass-card rounded-2xl p-8 reveal project-card">
                     <div class="icon-box mb-6">
-                        <i data-lucide="brain" class="w-8 h-8 text-[#00ff88]"></i>
+                        <i data-lucide="brain" class="w-8 h-8 text-[#a78bfa]"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">AI-Powered Phishing Email Detector</h3>
                     <p class="text-gray-400 mb-6 leading-relaxed">
@@ -511,7 +517,7 @@
                 <!-- Project 6: Wireshark Traffic Analysis -->
                 <div class="glass-card rounded-2xl p-8 reveal project-card">
                     <div class="icon-box mb-6">
-                        <i data-lucide="activity" class="w-8 h-8 text-[#00ff88]"></i>
+                        <i data-lucide="activity" class="w-8 h-8 text-[#a78bfa]"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">Network Traffic Analysis with Wireshark</h3>
                     <p class="text-gray-400 mb-6 leading-relaxed">
@@ -535,7 +541,7 @@
                 <!-- Project 7: pfSense Firewall Deployment & Traffic Monitoring -->
                 <div class="glass-card rounded-2xl p-8 reveal project-card">
                     <div class="icon-box mb-6">
-                        <i data-lucide="shield" class="w-8 h-8 text-[#00ff88]"></i>
+                        <i data-lucide="shield" class="w-8 h-8 text-[#a78bfa]"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">pfSense Firewall Deployment & Traffic Monitoring Lab</h3>
                     <p class="text-gray-400 mb-6 leading-relaxed">
@@ -562,12 +568,12 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 px-6 bg-[#0d1117]">
+    <section id="skills" class="py-20 px-6 bg-[#0d0d14]">
         <div class="max-w-6xl mx-auto">
             <div class="reveal mb-16">
                 <div class="flex items-center gap-4 mb-4">
-                    <div class="h-px bg-[#00ff88] w-12"></div>
-                    <span class="font-mono text-[#00ff88] tracking-widest text-sm">SKILLS</span>
+                    <div class="h-px bg-[#a78bfa] w-12"></div>
+                    <span class="font-mono text-[#a78bfa] tracking-widest text-sm">SKILLS</span>
                 </div>
                 <h2 class="text-4xl md:text-5xl font-bold mb-4">Technical Arsenal</h2>
                 <p class="text-gray-400 max-w-2xl text-lg">
@@ -578,12 +584,12 @@
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- Offensive Security -->
                 <div class="glass-card rounded-2xl p-8 reveal">
-                    <h3 class="font-mono text-[#00ff88] mb-6 text-lg">// OFFENSIVE SECURITY</h3>
+                    <h3 class="font-mono text-[#a78bfa] mb-6 text-lg">// OFFENSIVE SECURITY</h3>
                     <div class="space-y-6">
                         <div>
                             <div class="flex justify-between mb-2">
                                 <span class="font-medium">Nmap & Enumeration</span>
-                                <span class="font-mono text-[#00ff88] text-sm">Advanced</span>
+                                <span class="font-mono text-[#a78bfa] text-sm">Advanced</span>
                             </div>
                             <div class="skill-bar">
                                 <div class="skill-fill" data-width="90%"></div>
@@ -592,7 +598,7 @@
                         <div>
                             <div class="flex justify-between mb-2">
                                 <span class="font-medium">SQLMap</span>
-                                <span class="font-mono text-[#00ff88] text-sm">Advanced</span>
+                                <span class="font-mono text-[#a78bfa] text-sm">Advanced</span>
                             </div>
                             <div class="skill-bar">
                                 <div class="skill-fill" data-width="85%"></div>
@@ -601,7 +607,7 @@
                         <div>
                             <div class="flex justify-between mb-2">
                                 <span class="font-medium">Metasploit Framework</span>
-                                <span class="font-mono text-[#00ff88] text-sm">Intermediate</span>
+                                <span class="font-mono text-[#a78bfa] text-sm">Intermediate</span>
                             </div>
                             <div class="skill-bar">
                                 <div class="skill-fill" data-width="75%"></div>
@@ -610,7 +616,7 @@
                         <div>
                             <div class="flex justify-between mb-2">
                                 <span class="font-medium">Burp Suite</span>
-                                <span class="font-mono text-[#00ff88] text-sm">Intermediate</span>
+                                <span class="font-mono text-[#a78bfa] text-sm">Intermediate</span>
                             </div>
                             <div class="skill-bar">
                                 <div class="skill-fill" data-width="70%"></div>
@@ -619,7 +625,7 @@
                         <div>
                             <div class="flex justify-between mb-2">
                                 <span class="font-medium">Hydra</span>
-                                <span class="font-mono text-[#00ff88] text-sm">Intermediate</span>
+                                <span class="font-mono text-[#a78bfa] text-sm">Intermediate</span>
                             </div>
                             <div class="skill-bar">
                                 <div class="skill-fill" data-width="70%"></div>
@@ -630,12 +636,12 @@
 
                 <!-- Defensive Security -->
                 <div class="glass-card rounded-2xl p-8 reveal">
-                    <h3 class="font-mono text-[#00ff88] mb-6 text-lg">// DEFENSIVE SECURITY</h3>
+                    <h3 class="font-mono text-[#a78bfa] mb-6 text-lg">// DEFENSIVE SECURITY</h3>
                     <div class="space-y-6">
                         <div>
                             <div class="flex justify-between mb-2">
                                 <span class="font-medium">Splunk SIEM</span>
-                                <span class="font-mono text-[#00ff88] text-sm">Advanced</span>
+                                <span class="font-mono text-[#a78bfa] text-sm">Advanced</span>
                             </div>
                             <div class="skill-bar">
                                 <div class="skill-fill" data-width="90%"></div>
@@ -644,7 +650,7 @@
                         <div>
                             <div class="flex justify-between mb-2">
                                 <span class="font-medium">Wazuh SIEM</span>
-                                <span class="font-mono text-[#00ff88] text-sm">Advanced</span>
+                                <span class="font-mono text-[#a78bfa] text-sm">Advanced</span>
                             </div>
                             <div class="skill-bar">
                                 <div class="skill-fill" data-width="80%"></div>
@@ -653,7 +659,7 @@
                         <div>
                             <div class="flex justify-between mb-2">
                                 <span class="font-medium">Wireshark</span>
-                                <span class="font-mono text-[#00ff88] text-sm">Advanced</span>
+                                <span class="font-mono text-[#a78bfa] text-sm">Advanced</span>
                             </div>
                             <div class="skill-bar">
                                 <div class="skill-fill" data-width="90%"></div>
@@ -662,7 +668,7 @@
                         <div>
                             <div class="flex justify-between mb-2">
                                 <span class="font-medium">Detection Engineering</span>
-                                <span class="font-mono text-[#00ff88] text-sm">Intermediate</span>
+                                <span class="font-mono text-[#a78bfa] text-sm">Intermediate</span>
                             </div>
                             <div class="skill-bar">
                                 <div class="skill-fill" data-width="75%"></div>
@@ -671,7 +677,7 @@
                         <div>
                             <div class="flex justify-between mb-2">
                                 <span class="font-medium">Incident Response</span>
-                                <span class="font-mono text-[#00ff88] text-sm">Intermediate</span>
+                                <span class="font-mono text-[#a78bfa] text-sm">Intermediate</span>
                             </div>
                             <div class="skill-bar">
                                 <div class="skill-fill" data-width="70%"></div>
@@ -682,12 +688,12 @@
 
                 <!-- Programming Languages -->
                 <div class="glass-card rounded-2xl p-8 reveal">
-                    <h3 class="font-mono text-[#00ff88] mb-6 text-lg">// PROGRAMMING LANGUAGES</h3>
+                    <h3 class="font-mono text-[#a78bfa] mb-6 text-lg">// PROGRAMMING LANGUAGES</h3>
                     <div class="space-y-6">
                         <div>
                             <div class="flex justify-between mb-2">
                                 <span class="font-medium">Python</span>
-                                <span class="font-mono text-[#00ff88] text-sm">Advanced</span>
+                                <span class="font-mono text-[#a78bfa] text-sm">Advanced</span>
                             </div>
                             <div class="skill-bar">
                                 <div class="skill-fill" data-width="85%"></div>
@@ -696,7 +702,7 @@
                         <div>
                             <div class="flex justify-between mb-2">
                                 <span class="font-medium">Bash Scripting</span>
-                                <span class="font-mono text-[#00ff88] text-sm">Intermediate</span>
+                                <span class="font-mono text-[#a78bfa] text-sm">Intermediate</span>
                             </div>
                             <div class="skill-bar">
                                 <div class="skill-fill" data-width="75%"></div>
@@ -707,30 +713,30 @@
 
                 <!-- Platforms & Tools -->
                 <div class="glass-card rounded-2xl p-8 reveal">
-                    <h3 class="font-mono text-[#00ff88] mb-6 text-lg">// PLATFORMS & TOOLS</h3>
+                    <h3 class="font-mono text-[#a78bfa] mb-6 text-lg">// PLATFORMS & TOOLS</h3>
                     <div class="grid grid-cols-2 gap-3">
                         <div class="flex items-center gap-2 text-gray-300">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-[#00ff88]"></i>
+                            <i data-lucide="check-circle" class="w-4 h-4 text-[#a78bfa]"></i>
                             <span class="text-sm">Linux Administration</span>
                         </div>
                         <div class="flex items-center gap-2 text-gray-300">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-[#00ff88]"></i>
+                            <i data-lucide="check-circle" class="w-4 h-4 text-[#a78bfa]"></i>
                             <span class="text-sm">T-Pot Honeypot</span>
                         </div>
                         <div class="flex items-center gap-2 text-gray-300">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-[#00ff88]"></i>
+                            <i data-lucide="check-circle" class="w-4 h-4 text-[#a78bfa]"></i>
                             <span class="text-sm">Gemini API</span>
                         </div>
                         <div class="flex items-center gap-2 text-gray-300">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-[#00ff88]"></i>
+                            <i data-lucide="check-circle" class="w-4 h-4 text-[#a78bfa]"></i>
                             <span class="text-sm">Git/GitHub</span>
                         </div>
                         <div class="flex items-center gap-2 text-gray-300">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-[#00ff88]"></i>
+                            <i data-lucide="check-circle" class="w-4 h-4 text-[#a78bfa]"></i>
                             <span class="text-sm">Virtualization</span>
                         </div>
                         <div class="flex items-center gap-2 text-gray-300">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-[#00ff88]"></i>
+                            <i data-lucide="check-circle" class="w-4 h-4 text-[#a78bfa]"></i>
                             <span class="text-sm">Docker</span>
                         </div>
                     </div>
@@ -744,8 +750,8 @@
         <div class="max-w-6xl mx-auto">
             <div class="reveal mb-16">
                 <div class="flex items-center gap-4 mb-4">
-                    <div class="h-px bg-[#00ff88] w-12"></div>
-                    <span class="font-mono text-[#00ff88] tracking-widest text-sm">CERTIFICATIONS</span>
+                    <div class="h-px bg-[#a78bfa] w-12"></div>
+                    <span class="font-mono text-[#a78bfa] tracking-widest text-sm">CERTIFICATIONS</span>
                 </div>
                 <h2 class="text-4xl md:text-5xl font-bold mb-4">Credentials</h2>
                 <p class="text-gray-400 max-w-2xl text-lg">
@@ -757,7 +763,7 @@
                 <!-- CompTIA Security+ -->
                 <div class="glass-card rounded-2xl p-8 reveal flex flex-col md:flex-row gap-6 items-start md:items-center">
                     <div class="icon-box flex-shrink-0">
-                        <i data-lucide="shield-check" class="w-10 h-10 text-[#00ff88]"></i>
+                        <i data-lucide="shield-check" class="w-10 h-10 text-[#a78bfa]"></i>
                     </div>
                     <div class="flex-1">
                         <h3 class="text-2xl font-bold mb-2">CompTIA Security+</h3>
@@ -765,14 +771,14 @@
                             Foundational cybersecurity certification covering threats, vulnerabilities, identity and access management, 
                             cryptography, and risk management. Validates baseline skills necessary to perform core security functions.
                         </p>
-                        <span class="font-mono text-[#00ff88] text-sm">Achieved</span>
+                        <span class="font-mono text-[#a78bfa] text-sm">Achieved</span>
                     </div>
                 </div>
 
                 <!-- ISC2 CC -->
                 <div class="glass-card rounded-2xl p-8 reveal flex flex-col md:flex-row gap-6 items-start md:items-center">
                     <div class="icon-box flex-shrink-0">
-                        <i data-lucide="award" class="w-10 h-10 text-[#00ff88]"></i>
+                        <i data-lucide="award" class="w-10 h-10 text-[#a78bfa]"></i>
                     </div>
                     <div class="flex-1">
                         <h3 class="text-2xl font-bold mb-2">ISC2 Certified in Cybersecurity (CC)</h3>
@@ -781,7 +787,7 @@
                             network security, security operations, and incident response. Proves commitment to the 
                             cybersecurity profession.
                         </p>
-                        <span class="font-mono text-[#00ff88] text-sm">Achieved</span>
+                        <span class="font-mono text-[#a78bfa] text-sm">Achieved</span>
                     </div>
                 </div>
             </div>
@@ -789,7 +795,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 px-6 bg-[#0d1117]">
+    <section id="contact" class="py-20 px-6 bg-[#0d0d14]">
         <div class="max-w-4xl mx-auto text-center">
             <div class="glass-card rounded-3xl p-12 reveal">
                 <h2 class="text-4xl md:text-5xl font-bold mb-6">Let's Work Together</h2>
@@ -799,20 +805,20 @@
                 </p>
                 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mb-8">
-                    <button type="button" onclick="toggleContact('email')" class="btn-secondary hover:bg-[#00ff88]/10 group cursor-pointer" aria-label="Show email">
-                        <i data-lucide="mail" class="w-6 h-6 text-gray-400 group-hover:text-[#00ff88]"></i>
+                    <button type="button" onclick="toggleContact('email')" class="btn-secondary hover:bg-[#a78bfa]/10 group cursor-pointer" aria-label="Show email">
+                        <i data-lucide="mail" class="w-6 h-6 text-gray-400 group-hover:text-[#a78bfa]"></i>
                         <span class="font-mono text-sm">Email</span>
                     </button>
-                    <a href="http://linkedin.com/in/imafidon-joseph" target="_blank" rel="noopener noreferrer" class="btn-secondary hover:bg-[#00ff88]/10 group">
-                        <i data-lucide="linkedin" class="w-6 h-6 text-gray-400 group-hover:text-[#00ff88]"></i>
+                    <a href="http://linkedin.com/in/imafidon-joseph" target="_blank" rel="noopener noreferrer" class="btn-secondary hover:bg-[#a78bfa]/10 group">
+                        <i data-lucide="linkedin" class="w-6 h-6 text-gray-400 group-hover:text-[#a78bfa]"></i>
                         <span class="font-mono text-sm">LinkedIn</span>
                     </a>
-                    <a href="https://github.com/imafidon-joseph" target="_blank" rel="noopener noreferrer" class="btn-secondary hover:bg-[#00ff88]/10 group">
-                        <i data-lucide="github" class="w-6 h-6 text-gray-400 group-hover:text-[#00ff88]"></i>
+                    <a href="https://github.com/imafidon-joseph" target="_blank" rel="noopener noreferrer" class="btn-secondary hover:bg-[#a78bfa]/10 group">
+                        <i data-lucide="github" class="w-6 h-6 text-gray-400 group-hover:text-[#a78bfa]"></i>
                         <span class="font-mono text-sm">GitHub</span>
                     </a>
-                    <button type="button" onclick="toggleContact('phone')" class="btn-secondary hover:bg-[#00ff88]/10 group cursor-pointer" aria-label="Show phone">
-                        <i data-lucide="phone" class="w-6 h-6 text-gray-400 group-hover:text-[#00ff88]"></i>
+                    <button type="button" onclick="toggleContact('phone')" class="btn-secondary hover:bg-[#a78bfa]/10 group cursor-pointer" aria-label="Show phone">
+                        <i data-lucide="phone" class="w-6 h-6 text-gray-400 group-hover:text-[#a78bfa]"></i>
                         <span class="font-mono text-sm">Call</span>
                     </button>
                 </div>
@@ -839,17 +845,17 @@
     <!-- Footer -->
     <footer class="py-8 px-6 border-t border-white/5">
         <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-gray-500 font-mono text-sm">
-                Designed & built by <span class="text-[#00ff88]">joseph.sec</span> · © 2026
+            <p class="text-gray-600 font-mono text-sm">
+                Designed & built by <span class="text-[#a78bfa]">joseph.sec</span> · © 2026
             </p>
             <div class="flex gap-4">
-                <a href="https://github.com/imafidon-joseph" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-[#00ff88] transition-colors" aria-label="GitHub">
+                <a href="https://github.com/imafidon-joseph" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-[#a78bfa] transition-colors" aria-label="GitHub">
                     <i data-lucide="github" class="w-5 h-5"></i>
                 </a>
-                <a href="http://linkedin.com/in/imafidon-joseph" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-[#00ff88] transition-colors" aria-label="LinkedIn">
+                <a href="http://linkedin.com/in/imafidon-joseph" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-[#a78bfa] transition-colors" aria-label="LinkedIn">
                     <i data-lucide="linkedin" class="w-5 h-5"></i>
                 </a>
-                <button type="button" onclick="toggleContact('email')" class="text-gray-500 hover:text-[#00ff88] transition-colors" aria-label="Email">
+                <button type="button" onclick="toggleContact('email')" class="text-gray-600 hover:text-[#a78bfa] transition-colors" aria-label="Email">
                     <i data-lucide="mail" class="w-5 h-5"></i>
                 </button>
             </div>
