@@ -1,1014 +1,257 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>joseph.sec | Cybersecurity Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        :root {
-            --accent-primary: #a78bfa;
-            --accent-secondary: #f472b6;
-            --accent-green: #5eead4;
-            --dark-bg: #0a0a12;
-            --card-bg: #16161f;
-            --card-border: rgba(255, 255, 255, 0.06);
-            --text-primary: #e2e8f0;
-            --text-secondary: #94a3b8;
-            --text-muted: #64748b;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--text-primary);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-        
-        .font-mono {
-            font-family: 'JetBrains Mono', monospace;
-        }
-        
-        .neon-text {
-            color: var(--accent-green);
-            text-shadow: 0 0 20px rgba(94, 234, 212, 0.25);
-        }
-        
-        .glass-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--card-border);
-            transition: all 0.3s ease;
-        }
-        
-        .glass-card:hover {
-            border-color: rgba(167, 139, 250, 0.25);
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(167, 139, 250, 0.08);
-        }
-        
-        .skill-bar {
-            background: rgba(167, 139, 250, 0.1);
-            border-radius: 4px;
-            overflow: hidden;
-            height: 8px;
-        }
-        
-        .skill-fill {
-            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-            height: 100%;
-            border-radius: 4px;
-            box-shadow: 0 0 10px rgba(167, 139, 250, 0.4);
-            width: 0;
-            transition: width 1.5s ease;
-        }
-        
-        .tag {
-            background: rgba(167, 139, 250, 0.08);
-            color: var(--accent-primary);
-            border: 1px solid rgba(167, 139, 250, 0.25);
-            transition: all 0.3s ease;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-family: 'JetBrains Mono', monospace;
-        }
-        
-        .tag:hover {
-            background: rgba(167, 139, 250, 0.15);
-            transform: scale(1.05);
-        }
-        
-        .grid-bg {
-            background-image: 
-                linear-gradient(rgba(167, 139, 250, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(167, 139, 250, 0.02) 1px, transparent 1px);
-            background-size: 50px 50px;
-        }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .nav-link {
-            position: relative;
-            color: var(--text-secondary);
-            transition: color 0.3s ease;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover {
-            color: var(--text-primary);
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            color: var(--dark-bg);
-            font-weight: 700;
-            padding: 1rem 2rem;
-            border-radius: 0.5rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 30px rgba(167, 139, 250, 0.25);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 40px rgba(167, 139, 250, 0.4);
-        }
-        
-        .btn-secondary {
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-primary);
-            padding: 1rem 2rem;
-            border-radius: 0.5rem;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .btn-secondary:hover {
-            border-color: var(--accent-primary);
-            color: var(--accent-primary);
-            background: rgba(167, 139, 250, 0.05);
-        }
-        
-        .icon-box {
-            background: linear-gradient(135deg, rgba(167, 139, 250, 0.1), rgba(244, 114, 182, 0.05));
-            border: 1px solid rgba(167, 139, 250, 0.15);
-            width: 4rem;
-            height: 4rem;
-            border-radius: 0.75rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.3s ease;
-        }
-        
-        .project-card:hover .icon-box {
-            transform: scale(1.1);
-        }
-        
-        .github-link {
-            color: var(--accent-primary);
-            text-decoration: underline;
-            text-underline-offset: 4px;
-            text-decoration-color: rgba(167, 139, 250, 0.3);
-            transition: all 0.3s ease;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.875rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .github-link:hover {
-            text-decoration-color: var(--accent-primary);
-            text-shadow: 0 0 10px rgba(167, 139, 250, 0.4);
-        }
-        
-        .contact-reveal {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
-            opacity: 0;
-        }
-        
-        .contact-reveal.active {
-            max-height: 100px;
-            opacity: 1;
-            margin-top: 1rem;
-        }
-        
-        .contact-highlight {
-            background: rgba(167, 139, 250, 0.08);
-            border: 1px solid var(--accent-primary);
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--accent-primary);
-            font-size: 1.1rem;
-            display: inline-block;
-            cursor: pointer;
-            position: relative;
-            animation: highlightPulse 0.5s ease;
-            box-shadow: 0 0 20px rgba(167, 139, 250, 0.15);
-        }
-        
-        @keyframes highlightPulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 rgba(167, 139, 250, 0); }
-            50% { transform: scale(1.02); box-shadow: 0 0 30px rgba(167, 139, 250, 0.4); }
-            100% { transform: scale(1); box-shadow: 0 0 20px rgba(167, 139, 250, 0.15); }
-        }
-        
-        .copy-hint {
-            font-size: 0.7rem;
-            opacity: 0.7;
-            margin-top: 0.25rem;
-            display: block;
-        }
-        
-        .notification {
-            position: fixed;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            color: var(--dark-bg);
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 700;
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 100;
-            box-shadow: 0 10px 30px rgba(167, 139, 250, 0.3);
-        }
-        
-        .notification.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-        
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: var(--dark-bg);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: rgba(167, 139, 250, 0.3);
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-primary);
-        }
-        
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Imafidon Joseph | Cybersecurity Analyst</title>
+<meta name="description" content="Cybersecurity analyst focused on SOC operations, threat detection and security assessment. CompTIA Security+ and ISC2 CC.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--ink:#14181f;--muted:#4f5b6b;--rule:#d8dde4;--accent:#0b5c7a;--accent-soft:#e3eff4;--tag:#eef1f5}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1318;--surface:#161b22;--ink:#e6e9ee;--muted:#9aa5b4;--rule:#2a323d;--accent:#6bb7d4;--accent-soft:#16303b;--tag:#1d242d}}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{font:16px/1.65 'IBM Plex Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink)}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:'Source Serif 4',Georgia,serif;line-height:1.2}
+header{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--rule)}
+header .wrap{display:flex;justify-content:space-between;align-items:center;height:60px;gap:16px}
+.brand{font-family:'Source Serif 4',serif;font-weight:600;color:var(--ink);text-decoration:none}
+nav{display:flex;gap:22px;flex-wrap:wrap}
+nav a{color:var(--muted);text-decoration:none;font-size:.9rem}
+nav a:hover{color:var(--ink)}
+section{padding:72px 0;border-bottom:1px solid var(--rule)}
+section h2{font-size:1.7rem;margin-bottom:8px}
+.lead{color:var(--muted);max-width:62ch;margin-bottom:36px}
+#hero{padding:88px 0 72px}
+#hero h1{font-size:clamp(2.2rem,5vw,3.4rem);font-weight:700;margin-bottom:12px}
+.role{color:var(--accent);font-weight:500;margin-bottom:24px}
+#hero p{max-width:66ch;color:var(--muted);margin-bottom:16px}
+#hero p strong{color:var(--ink);font-weight:500}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-block;padding:10px 20px;border-radius:6px;font-weight:500;font-size:.95rem;text-decoration:none;border:1px solid var(--accent);cursor:pointer;font-family:inherit}
+.btn.p{background:var(--accent);color:var(--bg)}
+.btn.s{background:transparent;color:var(--accent)}
+.facts{display:flex;gap:40px;flex-wrap:wrap;margin-top:44px;padding-top:24px;border-top:1px solid var(--rule)}
+.facts div{font-size:.85rem;color:var(--muted)}
+.facts b{display:block;font:600 1.1rem 'Source Serif 4',serif;color:var(--ink)}
+.exp{background:var(--surface);border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:6px;padding:28px}
+.exp-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.exp h3{font-size:1.25rem}
+.badge{background:var(--accent-soft);color:var(--accent);font-size:.8rem;font-weight:500;padding:3px 10px;border-radius:99px;align-self:flex-start}
+.org{color:var(--muted);margin-bottom:14px}
+.exp ul{padding-left:20px;color:var(--muted)}
+.exp li{margin-bottom:6px}
+.proj{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--rule)}
+.item{display:grid;grid-template-columns:220px 1fr;gap:12px 32px;padding:28px 0;border-bottom:1px solid var(--rule)}
+.item h3{font-size:1.1rem}
+.item .kind{color:var(--muted);font-size:.85rem;margin-top:4px}
+.item p{color:var(--muted);margin-bottom:12px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tags span{background:var(--tag);color:var(--muted);font-size:.78rem;padding:2px 10px;border-radius:4px}
+.item a.l{font-size:.9rem;font-weight:500}
+.item.feat{background:var(--accent-soft);padding:28px 24px;border-radius:6px;border:1px solid var(--rule);margin-bottom:12px}
+.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:28px 48px}
+.skills h3{font-size:1rem;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--rule)}
+.skills p{color:var(--muted);font-size:.95rem}
+.certs{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.cert{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:24px}
+.cert h3{font-size:1.1rem;margin-bottom:6px}
+.cert p{color:var(--muted);font-size:.93rem}
+.contact-list{list-style:none;display:grid;gap:10px;margin-bottom:8px}
+.contact-list li{display:flex;gap:16px;align-items:baseline;flex-wrap:wrap}
+.contact-list span{color:var(--muted);width:90px;font-size:.9rem}
+.linkbtn{background:none;border:0;color:var(--accent);font:inherit;text-decoration:underline;cursor:pointer;padding:0}
+footer{padding:28px 0;color:var(--muted);font-size:.85rem}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(max-width:720px){.item{grid-template-columns:1fr}.skills,.certs{grid-template-columns:1fr}nav{gap:14px}header .wrap{height:auto;padding-top:12px;padding-bottom:12px;flex-direction:column;align-items:flex-start;gap:6px}html{scroll-padding-top:100px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
 </head>
-<body class="grid-bg">
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 bg-[#0a0a12]/90 backdrop-blur-md border-b border-white/5">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="font-mono text-2xl font-bold">
-                <span class="neon-text">joseph</span><span class="text-gray-500">.sec</span>
-            </a>
-            <button id="menuBtn" class="md:hidden text-white p-2" aria-label="Toggle menu">
-                <i data-lucide="menu" class="w-6 h-6"></i>
-            </button>
-            <div class="hidden md:flex gap-8 font-mono text-sm">
-                <a href="#about" class="nav-link">About</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#skills" class="nav-link">Skills</a>
-                <a href="#certs" class="nav-link">Credentials</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
-        </div>
-        <div id="mobileMenu" class="hidden md:hidden bg-[#16161f] border-t border-white/5">
-            <div class="flex flex-col p-6 gap-4 font-mono">
-                <a href="#about" class="text-gray-400 hover:text-[#a78bfa] transition-colors">About</a>
-                <a href="#projects" class="text-gray-400 hover:text-[#a78bfa] transition-colors">Projects</a>
-                <a href="#skills" class="text-gray-400 hover:text-[#a78bfa] transition-colors">Skills</a>
-                <a href="#certs" class="text-gray-400 hover:text-[#a78bfa] transition-colors">Credentials</a>
-                <a href="#contact" class="text-gray-400 hover:text-[#a78bfa] transition-colors">Contact</a>
-            </div>
-        </div>
-    </nav>
+<body>
+<header>
+<div class="wrap">
+<a class="brand" href="#top">Imafidon Joseph</a>
+<nav aria-label="Primary">
+<a href="#experience">Experience</a>
+<a href="#projects">Projects</a>
+<a href="#skills">Skills</a>
+<a href="#certifications">Certifications</a>
+<a href="#contact">Contact</a>
+</nav>
+</div>
+</header>
 
-    <!-- Hero Section -->
-    <section id="about" class="min-h-screen flex items-center justify-center pt-20 px-6">
-        <div class="max-w-4xl mx-auto text-center">
-            <div class="reveal">
-                <p class="font-mono text-[#5eead4] mb-4 tracking-widest text-sm">// CYBERSECURITY ANALYST | PENETRATION TESTER</p>
-                <h1 class="hero-title text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                    About <span class="gradient-text">Imafidon Joseph</span>
-                </h1>
-                <p class="text-xl text-gray-400 mb-8 max-w-3xl mx-auto leading-relaxed">
-                    I am a cybersecurity professional with <span class="text-white font-semibold">CompTIA Security+</span> and 
-                    <span class="text-white font-semibold">ISC2 Certified in Cybersecurity (CC)</span> certifications, focused on building 
-                    practical experience in <span class="text-white font-semibold">Security Operations (SOC)</span>. I am driven by a strong 
-                    interest in understanding real-world attack techniques and helping organizations detect, respond to, and mitigate 
-                    security threats effectively.
-                </p>
-                <p class="text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
-                    I have hands-on experience in both <span class="text-[#5eead4]">defensive</span> and 
-                    <span class="text-[#5eead4]">offensive</span> security, with a focus on threat detection and monitoring using 
-                    <span class="text-white font-semibold">Splunk</span> and <span class="text-white font-semibold">Wazuh SIEM</span>. 
-                    My work includes developing detection queries, building real-time alerts and dashboards, and analyzing attacks such as 
-                    SQL injection and phishing. I am particularly interested in threat detection, incident response, and improving 
-                    security visibility across enterprise environments.
-                </p>
-                
-                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-                    <a href="#projects" class="btn-primary">
-                        View My Work <i data-lucide="arrow-down" class="w-4 h-4"></i>
-                    </a>
-                    <a href="#contact" class="btn-secondary">
-                        Get in Touch <i data-lucide="mail" class="w-4 h-4"></i>
-                    </a>
-                </div>
+<main id="top">
+<section id="hero">
+<div class="wrap">
+<h1>Imafidon Joseph</h1>
+<p class="role">Cybersecurity Analyst · Security Operations (SOC)</p>
+<p>I am a cybersecurity professional holding <strong>CompTIA Security+</strong> and <strong>ISC2 Certified in Cybersecurity (CC)</strong>, building practical experience in <strong>Security Operations</strong>. I am driven by understanding real-world attack techniques and helping organizations detect, respond to and reduce security threats.</p>
+<p>My hands-on work spans defensive and offensive security: threat detection and monitoring with <strong>Splunk</strong> and <strong>Wazuh</strong>, detection queries, real-time alerts and dashboards, and analysis of attacks such as SQL injection and phishing. I am particularly interested in threat detection, incident response and improving security visibility across enterprise environments.</p>
+<div class="cta">
+<a class="btn p" href="#projects">View projects</a>
+<a class="btn s" href="#contact">Contact me</a>
+</div>
+<div class="facts">
+<div><b>8</b>Security projects</div>
+<div><b>2</b>Certifications</div>
+<div><b>Infoassure</b>Current internship</div>
+<div><b>SOC</b>Primary focus</div>
+</div>
+</div>
+</section>
 
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
-                    <div class="glass-card rounded-xl p-6 text-center">
-                        <div class="text-4xl font-bold neon-text mb-2">7+</div>
-                        <div class="text-gray-500 text-sm font-mono">Security Projects</div>
-                    </div>
-                    <div class="glass-card rounded-xl p-6 text-center">
-                        <div class="text-4xl font-bold neon-text mb-2">2</div>
-                        <div class="text-gray-500 text-sm font-mono">Certifications</div>
-                    </div>
-                    <div class="glass-card rounded-xl p-6 text-center">
-                        <div class="text-4xl font-bold neon-text mb-2">SOC</div>
-                        <div class="text-gray-500 text-sm font-mono">Focus Area</div>
-                    </div>
-                    <div class="glass-card rounded-xl p-6 text-center">
-                        <div class="text-4xl font-bold neon-text mb-2">∞</div>
-                        <div class="text-gray-500 text-sm font-mono">Curiosity</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="experience">
+<div class="wrap">
+<h2>Experience</h2>
+<p class="lead">Current professional engagement.</p>
+<article class="exp">
+<div class="exp-head">
+<h3>Cybersecurity Intern</h3>
+<span class="badge">Ongoing</span>
+</div>
+<p class="org">Infoassure · Internship program</p>
+<ul>
+<li>Part of Team Vanguard, delivering a cybersecurity assessment of PayNova Financial Services, a simulated mid-sized fintech, as the program capstone.</li>
+<li>Assessing a hybrid on-premises architecture that supports card payments, mobile wallets and micro-lending.</li>
+<li>Producing assessment documentation and findings in a structured, report-ready format.</li>
+</ul>
+</article>
+</div>
+</section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="reveal mb-16">
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="h-px bg-[#a78bfa] w-12"></div>
-                    <span class="font-mono text-[#a78bfa] tracking-widest text-sm">PROJECTS</span>
-                </div>
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Hands-On Security Work</h2>
-                <p class="text-gray-400 max-w-2xl text-lg">
-                    I'm specialized in defensive and offensive security. Real-world projects demonstrating practical 
-                    cybersecurity skills — from threat detection to attack simulation and security analysis.
-                </p>
-            </div>
+<section id="projects">
+<div class="wrap">
+<h2>Projects</h2>
+<p class="lead">Practical work in detection engineering, attack simulation, network analysis and security assessment. Each project links to its full write-up on GitHub.</p>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Project 1: Phishing Simulation & Detection with Splunk -->
-                <div class="glass-card rounded-2xl p-8 reveal project-card">
-                    <div class="icon-box mb-6">
-                        <i data-lucide="mail-warning" class="w-8 h-8 text-[#a78bfa]"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Phishing Simulation & Detection with Splunk</h3>
-                    <p class="text-gray-400 mb-6 leading-relaxed">
-                        Simulated a sophisticated phishing attack that captures user credentials and redirects victims 
-                        to legitimate Google services to avoid detection. Captured and analyzed the attack using Splunk 
-                        SIEM, identifying indicators of compromise (IOCs), suspicious HTTP requests, and credential 
-                        harvesting attempts. Developed comprehensive alerting rules and dashboards for phishing detection 
-                        and response.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="tag">Splunk</span>
-                        <span class="tag">Phishing</span>
-                        <span class="tag">SIEM</span>
-                        <span class="tag">IOC Analysis</span>
-                        <span class="tag">Threat Detection</span>
-                        <span class="tag">Social Engineering</span>
-                    </div>
-                    <a href="https://github.com/imafidon-joseph/Phishing-Simulation-Detection-With-Splunk-And-Analysis-" target="_blank" rel="noopener noreferrer" class="github-link">
-                        <span>→</span> View on GitHub
-                    </a>
-                </div>
+<div class="proj">
+<article class="item feat">
+<div><h3>PayNova Financial Services Cybersecurity Assessment</h3><p class="kind">Infoassure capstone · Team Vanguard</p></div>
+<div>
+<p>A cybersecurity assessment of PayNova, a simulated mid-sized fintech offering card payments, mobile wallets and micro-lending on a hybrid on-premises architecture. The project documents the environment, risks and findings in a full assessment report.</p>
+<div class="tags"><span>Security Assessment</span><span>Risk Analysis</span><span>Fintech</span><span>Hybrid Architecture</span><span>Reporting</span></div>
+<a class="l" href="https://github.com/imafidon-joseph/PayNova-Financial-Services-Cybersecurity-Assessment" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+</div>
+</article>
 
-                <!-- Project 2: SQL Injection Detection & Analysis -->
-                <div class="glass-card rounded-2xl p-8 reveal project-card">
-                    <div class="icon-box mb-6">
-                        <i data-lucide="database" class="w-8 h-8 text-[#a78bfa]"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">SQL Injection Detection & Analysis</h3>
-                    <p class="text-gray-400 mb-6 leading-relaxed">
-                        Simulated SQL injection attacks against vulnerable web applications and captured the attack 
-                        traffic using Splunk SIEM. Developed detection queries and real-time alerts to identify 
-                        malicious SQL queries, unauthorized database access attempts, and exfiltration patterns. 
-                        Created comprehensive dashboards for monitoring database security events.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="tag">Splunk</span>
-                        <span class="tag">SQLMap</span>
-                        <span class="tag">SQL Injection</span>
-                        <span class="tag">Detection Engineering</span>
-                        <span class="tag">SIEM</span>
-                    </div>
-                    <a href="https://github.com/imafidon-joseph/SQL-Injection-Detection-Analysis" target="_blank" rel="noopener noreferrer" class="github-link">
-                        <span>→</span> View on GitHub
-                    </a>
-                </div>
+<article class="item">
+<div><h3>Phishing Simulation and Detection with Splunk</h3><p class="kind">Detection engineering</p></div>
+<div>
+<p>Simulated a phishing attack that captures credentials and redirects victims to legitimate Google services to avoid suspicion. Analyzed the activity in Splunk to identify indicators of compromise, suspicious HTTP requests and credential harvesting, then built alerting rules and dashboards for detection and response.</p>
+<div class="tags"><span>Splunk</span><span>SIEM</span><span>IOC Analysis</span><span>Threat Detection</span><span>Social Engineering</span></div>
+<a class="l" href="https://github.com/imafidon-joseph/Phishing-Simulation-Detection-With-Splunk-And-Analysis-" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+</div>
+</article>
 
-                <!-- Project 3: Union-Based SQL Injection -->
-                <div class="glass-card rounded-2xl p-8 reveal project-card">
-                    <div class="icon-box mb-6">
-                        <i data-lucide="table-2" class="w-8 h-8 text-[#a78bfa]"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Union-Based SQL Injection & Data Extraction</h3>
-                    <p class="text-gray-400 mb-6 leading-relaxed">
-                        Performed advanced Union-based SQL injection attacks to extract database contents including 
-                        usernames and passwords. Demonstrated understanding of SQL query structure, database enumeration, 
-                        and manual exploitation techniques. Documented the entire process from vulnerability identification 
-                        to successful data exfiltration with mitigation recommendations.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="tag">SQL Injection</span>
-                        <span class="tag">Union-Based</span>
-                        <span class="tag">Data Extraction</span>
-                        <span class="tag">Manual Exploitation</span>
-                        <span class="tag">Database Security</span>
-                    </div>
-                    <a href="https://github.com/imafidon-joseph/SQLI-Union-Single-Column-Extraction" target="_blank" rel="noopener noreferrer" class="github-link">
-                        <span>→</span> View on GitHub
-                    </a>
-                </div>
+<article class="item">
+<div><h3>SQL Injection Detection and Analysis</h3><p class="kind">Detection engineering</p></div>
+<div>
+<p>Ran SQL injection attacks against a vulnerable web application and captured the traffic in Splunk. Developed detection queries and real-time alerts for malicious SQL queries, unauthorized database access attempts and exfiltration patterns, with dashboards for database security monitoring.</p>
+<div class="tags"><span>Splunk</span><span>SQLMap</span><span>Detection Engineering</span><span>SIEM</span></div>
+<a class="l" href="https://github.com/imafidon-joseph/SQL-Injection-Detection-Analysis" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+</div>
+</article>
 
-                <!-- Project 4: T-Pot Honeypot -->
-                <div class="glass-card rounded-2xl p-8 reveal project-card">
-                    <div class="icon-box mb-6">
-                        <i data-lucide="shield" class="w-8 h-8 text-[#a78bfa]"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">T-Pot Honeypot Deployment</h3>
-                    <p class="text-gray-400 mb-6 leading-relaxed">
-                        Deployed and configured T-Pot multi-honeypot platform to attract and analyze cyber attacks 
-                        in real-time. Collected threat intelligence on attack patterns, malware samples, and 
-                        attacker behaviors. Analyzed logs to understand attack vectors and techniques used by 
-                        threat actors. Integrated findings with SIEM for enhanced threat visibility.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="tag">T-Pot</span>
-                        <span class="tag">Honeypot</span>
-                        <span class="tag">Threat Intelligence</span>
-                        <span class="tag">Linux</span>
-                        <span class="tag">Malware Analysis</span>
-                    </div>
-                    <a href="https://github.com/imafidon-joseph/honeypot-project" target="_blank" rel="noopener noreferrer" class="github-link">
-                        <span>→</span> View on GitHub
-                    </a>
-                </div>
+<article class="item">
+<div><h3>Union-Based SQL Injection and Data Extraction</h3><p class="kind">Offensive security</p></div>
+<div>
+<p>Performed manual Union-based SQL injection to enumerate a database and extract usernames and passwords. Documented the process from vulnerability identification to data extraction, with mitigation recommendations.</p>
+<div class="tags"><span>SQL Injection</span><span>Manual Exploitation</span><span>Database Security</span></div>
+<a class="l" href="https://github.com/imafidon-joseph/SQLI-Union-Single-Column-Extraction" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+</div>
+</article>
 
-                <!-- Project 5: AI Phishing Email Detector -->
-                <div class="glass-card rounded-2xl p-8 reveal project-card">
-                    <div class="icon-box mb-6">
-                        <i data-lucide="brain" class="w-8 h-8 text-[#a78bfa]"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">AI-Powered Phishing Email Detector</h3>
-                    <p class="text-gray-400 mb-6 leading-relaxed">
-                        Developed a phishing email detection tool using the Gemini API to analyze email content 
-                        and identify phishing indicators. Implemented natural language processing techniques to 
-                        detect suspicious patterns, malicious links, and social engineering tactics. Created 
-                        a user-friendly interface for real-time email analysis and threat scoring.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="tag">Python</span>
-                        <span class="tag">Gemini API</span>
-                        <span class="tag">AI/ML</span>
-                        <span class="tag">NLP</span>
-                        <span class="tag">Email Security</span>
-                    </div>
-                    <a href="https://github.com/imafidon-joseph/AI-Powered-Phishing-Email-Detector" target="_blank" rel="noopener noreferrer" class="github-link">
-                        <span>→</span> View on GitHub
-                    </a>
-                </div>
+<article class="item">
+<div><h3>pfSense Firewall Deployment and Traffic Monitoring Lab</h3><p class="kind">Network security</p></div>
+<div>
+<p>Deployed pfSense in a virtualized lab with custom block rules, Suricata IDS for intrusion detection and Splunk for centralized log analysis. Simulated attacker behavior from Kali Linux to validate detections and demonstrate a SOC workflow.</p>
+<div class="tags"><span>pfSense</span><span>Suricata</span><span>Splunk</span><span>Firewall Rules</span><span>Traffic Analysis</span></div>
+<a class="l" href="https://github.com/imafidon-joseph/pfSense-Firewall-Deployment-Traffic-Monitoring-Lab" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+</div>
+</article>
 
-                <!-- Project 6: Wireshark Traffic Analysis -->
-                <div class="glass-card rounded-2xl p-8 reveal project-card">
-                    <div class="icon-box mb-6">
-                        <i data-lucide="activity" class="w-8 h-8 text-[#a78bfa]"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Network Traffic Analysis with Wireshark</h3>
-                    <p class="text-gray-400 mb-6 leading-relaxed">
-                        Performed deep packet inspection and network traffic analysis using Wireshark to detect 
-                        and investigate suspicious activities. Analyzed protocols including HTTP, DNS, and TCP/UDP 
-                        to identify anomalies, malware communications, and data exfiltration attempts. Created 
-                        custom filters and profiles for efficient threat hunting and forensic investigation.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="tag">Wireshark</span>
-                        <span class="tag">Network Forensics</span>
-                        <span class="tag">Packet Analysis</span>
-                        <span class="tag">Protocol Analysis</span>
-                        <span class="tag">Threat Hunting</span>
-                    </div>
-                    <a href="https://github.com/imafidon-joseph" target="_blank" rel="noopener noreferrer" class="github-link">
-                        <span>→</span> View on GitHub
-                    </a>
-                </div>
+<article class="item">
+<div><h3>T-Pot Honeypot Deployment</h3><p class="kind">Threat intelligence</p></div>
+<div>
+<p>Deployed the T-Pot multi-honeypot platform to collect real attack data. Analyzed logs to understand attacker techniques, malware samples and attack vectors, and fed findings into a SIEM for wider visibility.</p>
+<div class="tags"><span>T-Pot</span><span>Honeypot</span><span>Threat Intelligence</span><span>Linux</span></div>
+<a class="l" href="https://github.com/imafidon-joseph/honeypot-project" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+</div>
+</article>
 
-                <!-- Project 7: pfSense Firewall Deployment & Traffic Monitoring -->
-                <div class="glass-card rounded-2xl p-8 reveal project-card">
-                    <div class="icon-box mb-6">
-                        <i data-lucide="shield" class="w-8 h-8 text-[#a78bfa]"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">pfSense Firewall Deployment & Traffic Monitoring Lab</h3>
-                    <p class="text-gray-400 mb-6 leading-relaxed">
-                        Deployed and configured a pfSense firewall in a virtualized lab environment to monitor, 
-                        control, and analyze network traffic. Implemented custom firewall block rules to enforce 
-                        traffic control, set up Suricata IDS for real-time intrusion detection, and integrated 
-                        with Splunk SIEM for centralized log analysis. Simulated attacker behavior using Kali Linux 
-                        to validate detection capabilities and demonstrate real-world SOC workflows.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="tag">pfSense</span>
-                        <span class="tag">Suricata IDS</span>
-                        <span class="tag">Splunk</span>
-                        <span class="tag">Firewall Rules</span>
-                        <span class="tag">Network Security</span>
-                        <span class="tag">Traffic Analysis</span>
-                    </div>
-                    <a href="https://github.com/imafidon-joseph/pfSense-Firewall-Deployment-Traffic-Monitoring-Lab" target="_blank" rel="noopener noreferrer" class="github-link">
-                        <span>→</span> View on GitHub
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+<article class="item">
+<div><h3>AI-Powered Phishing Email Detector</h3><p class="kind">Security tooling</p></div>
+<div>
+<p>Built a Python tool that uses the Gemini API to analyze email content for phishing indicators, including suspicious links and social engineering language, and returns a threat score.</p>
+<div class="tags"><span>Python</span><span>Gemini API</span><span>NLP</span><span>Email Security</span></div>
+<a class="l" href="https://github.com/imafidon-joseph/AI-Powered-Phishing-Email-Detector" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+</div>
+</article>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 px-6 bg-[#0d0d14]">
-        <div class="max-w-6xl mx-auto">
-            <div class="reveal mb-16">
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="h-px bg-[#a78bfa] w-12"></div>
-                    <span class="font-mono text-[#a78bfa] tracking-widest text-sm">SKILLS</span>
-                </div>
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Technical Arsenal</h2>
-                <p class="text-gray-400 max-w-2xl text-lg">
-                    Core competencies across offensive security, defensive operations, and security tools.
-                </p>
-            </div>
+<article class="item">
+<div><h3>Network Traffic Analysis with Wireshark</h3><p class="kind">Network forensics</p></div>
+<div>
+<p>Inspected packet captures across HTTP, DNS and TCP/UDP to find anomalies, malware communication and data exfiltration. Built custom filters and profiles for threat hunting and forensic investigation.</p>
+<div class="tags"><span>Wireshark</span><span>Packet Analysis</span><span>Threat Hunting</span></div>
+<a class="l" href="https://github.com/imafidon-joseph" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+</div>
+</article>
+</div>
+</div>
+</section>
 
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Offensive Security -->
-                <div class="glass-card rounded-2xl p-8 reveal">
-                    <h3 class="font-mono text-[#a78bfa] mb-6 text-lg">// OFFENSIVE SECURITY</h3>
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Nmap & Enumeration</span>
-                                <span class="font-mono text-[#a78bfa] text-sm">Advanced</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-fill" data-width="90%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">SQLMap</span>
-                                <span class="font-mono text-[#a78bfa] text-sm">Advanced</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-fill" data-width="85%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Metasploit Framework</span>
-                                <span class="font-mono text-[#a78bfa] text-sm">Intermediate</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-fill" data-width="75%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Burp Suite</span>
-                                <span class="font-mono text-[#a78bfa] text-sm">Intermediate</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-fill" data-width="70%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Hydra</span>
-                                <span class="font-mono text-[#a78bfa] text-sm">Intermediate</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-fill" data-width="70%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<section id="skills">
+<div class="wrap">
+<h2>Skills</h2>
+<p class="lead">Tools and disciplines I use in practice.</p>
+<div class="skills">
+<div><h3>Defensive security</h3><p>Splunk, Wazuh, Suricata IDS, Wireshark, detection engineering, incident response, log analysis, threat hunting</p></div>
+<div><h3>Offensive security</h3><p>Nmap and enumeration, SQLMap, Metasploit, Burp Suite, Hydra, Kali Linux</p></div>
+<div><h3>Programming</h3><p>Python, Bash</p></div>
+<div><h3>Platforms and infrastructure</h3><p>Linux administration, pfSense, virtualization, Docker, T-Pot, Git and GitHub, Gemini API</p></div>
+</div>
+</div>
+</section>
 
-                <!-- Defensive Security -->
-                <div class="glass-card rounded-2xl p-8 reveal">
-                    <h3 class="font-mono text-[#a78bfa] mb-6 text-lg">// DEFENSIVE SECURITY</h3>
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Splunk SIEM</span>
-                                <span class="font-mono text-[#a78bfa] text-sm">Advanced</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-fill" data-width="90%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Wazuh SIEM</span>
-                                <span class="font-mono text-[#a78bfa] text-sm">Advanced</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-fill" data-width="80%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Wireshark</span>
-                                <span class="font-mono text-[#a78bfa] text-sm">Advanced</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-fill" data-width="90%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Detection Engineering</span>
-                                <span class="font-mono text-[#a78bfa] text-sm">Intermediate</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-fill" data-width="75%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Incident Response</span>
-                                <span class="font-mono text-[#a78bfa] text-sm">Intermediate</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-fill" data-width="70%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<section id="certifications">
+<div class="wrap">
+<h2>Certifications</h2>
+<p class="lead">Industry certifications covering core security knowledge.</p>
+<div class="certs">
+<div class="cert"><h3>CompTIA Security+</h3><p>Threats and vulnerabilities, identity and access management, cryptography and risk management.</p></div>
+<div class="cert"><h3>ISC2 Certified in Cybersecurity (CC)</h3><p>Security principles, network security, security operations and incident response.</p></div>
+</div>
+</div>
+</section>
 
-                <!-- Programming Languages -->
-                <div class="glass-card rounded-2xl p-8 reveal">
-                    <h3 class="font-mono text-[#a78bfa] mb-6 text-lg">// PROGRAMMING LANGUAGES</h3>
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Python</span>
-                                <span class="font-mono text-[#a78bfa] text-sm">Advanced</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-fill" data-width="85%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Bash Scripting</span>
-                                <span class="font-mono text-[#a78bfa] text-sm">Intermediate</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-fill" data-width="75%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<section id="contact">
+<div class="wrap">
+<h2>Contact</h2>
+<p class="lead">Open to SOC analyst and cybersecurity opportunities. Reach out to discuss a role or collaboration.</p>
+<ul class="contact-list">
+<li><span>Email</span><a href="mailto:imafidonjoseph9@gmail.com">imafidonjoseph9@gmail.com</a></li>
+<li><span>Phone</span><button type="button" class="linkbtn" id="ph" aria-label="Show phone number">Show number</button></li>
+<li><span>LinkedIn</span><a href="https://linkedin.com/in/imafidon-joseph" target="_blank" rel="noopener noreferrer">linkedin.com/in/imafidon-joseph</a></li>
+<li><span>GitHub</span><a href="https://github.com/imafidon-joseph" target="_blank" rel="noopener noreferrer">github.com/imafidon-joseph</a></li>
+</ul>
+</div>
+</section>
+</main>
 
-                <!-- Platforms & Tools -->
-                <div class="glass-card rounded-2xl p-8 reveal">
-                    <h3 class="font-mono text-[#a78bfa] mb-6 text-lg">// PLATFORMS & TOOLS</h3>
-                    <div class="grid grid-cols-2 gap-3">
-                        <div class="flex items-center gap-2 text-gray-300">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-[#a78bfa]"></i>
-                            <span class="text-sm">Linux Administration</span>
-                        </div>
-                        <div class="flex items-center gap-2 text-gray-300">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-[#a78bfa]"></i>
-                            <span class="text-sm">T-Pot Honeypot</span>
-                        </div>
-                        <div class="flex items-center gap-2 text-gray-300">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-[#a78bfa]"></i>
-                            <span class="text-sm">Gemini API</span>
-                        </div>
-                        <div class="flex items-center gap-2 text-gray-300">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-[#a78bfa]"></i>
-                            <span class="text-sm">Git/GitHub</span>
-                        </div>
-                        <div class="flex items-center gap-2 text-gray-300">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-[#a78bfa]"></i>
-                            <span class="text-sm">Virtualization</span>
-                        </div>
-                        <div class="flex items-center gap-2 text-gray-300">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-[#a78bfa]"></i>
-                            <span class="text-sm">Docker</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<footer>
+<div class="wrap"><span>© 2026 Imafidon Joseph</span><span>Cybersecurity Analyst</span></div>
+</footer>
 
-    <!-- Certifications Section -->
-    <section id="certs" class="py-20 px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="reveal mb-16">
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="h-px bg-[#a78bfa] w-12"></div>
-                    <span class="font-mono text-[#a78bfa] tracking-widest text-sm">CERTIFICATIONS</span>
-                </div>
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Credentials</h2>
-                <p class="text-gray-400 max-w-2xl text-lg">
-                    Industry-recognized certifications validating core security competencies.
-                </p>
-            </div>
-
-            <div class="space-y-6">
-                <!-- CompTIA Security+ -->
-                <div class="glass-card rounded-2xl p-8 reveal flex flex-col md:flex-row gap-6 items-start md:items-center">
-                    <div class="icon-box flex-shrink-0">
-                        <i data-lucide="shield-check" class="w-10 h-10 text-[#a78bfa]"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h3 class="text-2xl font-bold mb-2">CompTIA Security+</h3>
-                        <p class="text-gray-400 mb-2">
-                            Foundational cybersecurity certification covering threats, vulnerabilities, identity and access management, 
-                            cryptography, and risk management. Validates baseline skills necessary to perform core security functions.
-                        </p>
-                        <span class="font-mono text-[#a78bfa] text-sm">Achieved</span>
-                    </div>
-                </div>
-
-                <!-- ISC2 CC -->
-                <div class="glass-card rounded-2xl p-8 reveal flex flex-col md:flex-row gap-6 items-start md:items-center">
-                    <div class="icon-box flex-shrink-0">
-                        <i data-lucide="award" class="w-10 h-10 text-[#a78bfa]"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h3 class="text-2xl font-bold mb-2">ISC2 Certified in Cybersecurity (CC)</h3>
-                        <p class="text-gray-400 mb-2">
-                            Entry-level certification demonstrating foundational knowledge in cybersecurity principles, 
-                            network security, security operations, and incident response. Proves commitment to the 
-                            cybersecurity profession.
-                        </p>
-                        <span class="font-mono text-[#a78bfa] text-sm">Achieved</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 px-6 bg-[#0d0d14]">
-        <div class="max-w-4xl mx-auto text-center">
-            <div class="glass-card rounded-3xl p-12 reveal">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">Let's Work Together</h2>
-                <p class="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">
-                    Looking for a cybersecurity analyst who combines technical depth with a strategic mindset? 
-                    Let's connect and discuss how I can help secure your organization.
-                </p>
-                
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mb-8">
-                    <button type="button" onclick="toggleContact('email')" class="btn-secondary hover:bg-[#a78bfa]/10 group cursor-pointer" aria-label="Show email">
-                        <i data-lucide="mail" class="w-6 h-6 text-gray-400 group-hover:text-[#a78bfa]"></i>
-                        <span class="font-mono text-sm">Email</span>
-                    </button>
-                    <a href="http://linkedin.com/in/imafidon-joseph" target="_blank" rel="noopener noreferrer" class="btn-secondary hover:bg-[#a78bfa]/10 group">
-                        <i data-lucide="linkedin" class="w-6 h-6 text-gray-400 group-hover:text-[#a78bfa]"></i>
-                        <span class="font-mono text-sm">LinkedIn</span>
-                    </a>
-                    <a href="https://github.com/imafidon-joseph" target="_blank" rel="noopener noreferrer" class="btn-secondary hover:bg-[#a78bfa]/10 group">
-                        <i data-lucide="github" class="w-6 h-6 text-gray-400 group-hover:text-[#a78bfa]"></i>
-                        <span class="font-mono text-sm">GitHub</span>
-                    </a>
-                    <button type="button" onclick="toggleContact('phone')" class="btn-secondary hover:bg-[#a78bfa]/10 group cursor-pointer" aria-label="Show phone">
-                        <i data-lucide="phone" class="w-6 h-6 text-gray-400 group-hover:text-[#a78bfa]"></i>
-                        <span class="font-mono text-sm">Call</span>
-                    </button>
-                </div>
-
-                <!-- Email Reveal -->
-                <div id="email-reveal" class="contact-reveal">
-                    <div class="contact-highlight" onclick="copyToClipboard('imafidonjoseph9@gmail.com')">
-                        imafidonjoseph9@gmail.com
-                        <span class="copy-hint">Click to copy</span>
-                    </div>
-                </div>
-
-                <!-- Phone Reveal -->
-                <div id="phone-reveal" class="contact-reveal">
-                    <div class="contact-highlight" onclick="copyToClipboard('+234 902 124 4273')">
-                        +234 902 124 4273
-                        <span class="copy-hint">Click to copy</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-8 px-6 border-t border-white/5">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-gray-600 font-mono text-sm">
-                Designed & built by <span class="text-[#a78bfa]">joseph.sec</span> · © 2026
-            </p>
-            <div class="flex gap-4">
-                <a href="https://github.com/imafidon-joseph" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-[#a78bfa] transition-colors" aria-label="GitHub">
-                    <i data-lucide="github" class="w-5 h-5"></i>
-                </a>
-                <a href="http://linkedin.com/in/imafidon-joseph" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-[#a78bfa] transition-colors" aria-label="LinkedIn">
-                    <i data-lucide="linkedin" class="w-5 h-5"></i>
-                </a>
-                <button type="button" onclick="toggleContact('email')" class="text-gray-600 hover:text-[#a78bfa] transition-colors" aria-label="Email">
-                    <i data-lucide="mail" class="w-5 h-5"></i>
-                </button>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Notification -->
-    <div id="notification" class="notification">
-        Copied to clipboard!
-    </div>
-
-    <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
-
-        // Mobile menu toggle
-        const menuBtn = document.getElementById('menuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Close mobile menu when clicking a link
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-
-        // Contact reveal functionality
-        function toggleContact(type) {
-            const emailReveal = document.getElementById('email-reveal');
-            const phoneReveal = document.getElementById('phone-reveal');
-            
-            if (type === 'email') {
-                emailReveal.classList.toggle('active');
-                phoneReveal.classList.remove('active');
-            } else if (type === 'phone') {
-                phoneReveal.classList.toggle('active');
-                emailReveal.classList.remove('active');
-            }
-        }
-
-        // Copy to clipboard functionality
-        async function copyToClipboard(text) {
-            try {
-                await navigator.clipboard.writeText(text);
-                showNotification();
-            } catch (err) {
-                // Fallback for older browsers
-                const textArea = document.createElement('textarea');
-                textArea.value = text;
-                textArea.style.position = 'fixed';
-                textArea.style.left = '-999999px';
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-                showNotification();
-            }
-        }
-
-        function showNotification() {
-            const notification = document.getElementById('notification');
-            notification.classList.add('show');
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 2000);
-        }
-
-        // GSAP Animations
-        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-            gsap.registerPlugin(ScrollTrigger);
-
-            // Reveal animations
-            const revealElements = document.querySelectorAll('.reveal');
-            revealElements.forEach((element, index) => {
-                gsap.fromTo(element, 
-                    { opacity: 0, y: 30 },
-                    {
-                        opacity: 1,
-                        y: 0,
-                        duration: 0.8,
-                        ease: "power3.out",
-                        scrollTrigger: {
-                            trigger: element,
-                            start: "top 85%",
-                            toggleActions: "play none none reverse"
-                        },
-                        delay: (index % 3) * 0.1
-                    }
-                );
-            });
-
-            // Skill bars animation
-            const skillBars = document.querySelectorAll('.skill-fill');
-            skillBars.forEach(bar => {
-                const width = bar.getAttribute('data-width');
-                gsap.to(bar, {
-                    width: width,
-                    duration: 1.5,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: bar,
-                        start: "top 90%",
-                        toggleActions: "play none none reverse"
-                    }
-                });
-            });
-
-            // Parallax effect for hero
-            gsap.to(".gradient-text", {
-                yPercent: -20,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: "body",
-                    start: "top top",
-                    end: "bottom top",
-                    scrub: true
-                }
-            });
-        }
-
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Close contact reveals when clicking outside
-        document.addEventListener('click', (e) => {
-            const emailReveal = document.getElementById('email-reveal');
-            const phoneReveal = document.getElementById('phone-reveal');
-            const emailBtn = document.querySelector('button[onclick="toggleContact(\'email\')"]');
-            const phoneBtn = document.querySelector('button[onclick="toggleContact(\'phone\')"]');
-            
-            if (!emailReveal.contains(e.target) && !emailBtn.contains(e.target)) {
-                emailReveal.classList.remove('active');
-            }
-            if (!phoneReveal.contains(e.target) && !phoneBtn.contains(e.target)) {
-                phoneReveal.classList.remove('active');
-            }
-        });
-    </script>
+<script>
+document.getElementById('ph').addEventListener('click',function(){
+var a=document.createElement('a');a.href='tel:+2349021244273';a.textContent='+234 902 124 4273';this.replaceWith(a);
+});
+</script>
 </body>
 </html>
